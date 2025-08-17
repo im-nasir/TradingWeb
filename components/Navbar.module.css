@@ -1,0 +1,286 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 20%, rgba(29, 78, 216, 0.95) 50%, rgba(15, 23, 42, 0.95) 80%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(29, 78, 216, 0.25), 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logoIcon:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+}
+
+.navIcons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: #d1d5db;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.navButton:hover {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  transform: translateY(-1px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.navButton:active {
+  transform: translateY(0);
+}
+
+.actionIcons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: #d1d5db;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #f3f4f6;
+  transform: translateY(-1px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.actionButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+
+/* Large tablets and small desktops (1024px and down) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .navIcons {
+    gap: 1.25rem;
+  }
+  
+  .actionIcons {
+    gap: 0.75rem;
+  }
+}
+
+/* Tablets (768px and down) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 15%, rgba(29, 78, 216, 0.95) 50%, rgba(15, 23, 42, 0.95) 85%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .navIcons {
+    gap: 1rem;
+  }
+  
+  .actionIcons {
+    gap: 0.5rem;
+  }
+  
+  .navButton,
+  .actionButton {
+    padding: 0.625rem;
+  }
+  
+  .logoIcon svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .navButton svg,
+  .actionButton svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Small tablets and large phones (640px and down) */
+@media (max-width: 640px) {
+  .navbar {
+    padding: 0.625rem 0.875rem;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 10%, rgba(29, 78, 216, 0.95) 50%, rgba(15, 23, 42, 0.95) 90%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .navIcons {
+    gap: 0.875rem;
+  }
+  
+  .actionIcons {
+    gap: 0.375rem;
+  }
+  
+  .navButton,
+  .actionButton {
+    padding: 0.5rem;
+  }
+  
+  .logoIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .navButton svg,
+  .actionButton svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Mobile phones (480px and down) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 5%, rgba(29, 78, 216, 0.95) 50%, rgba(15, 23, 42, 0.95) 95%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .navIcons {
+    gap: 0.75rem;
+  }
+  
+  .actionIcons {
+    gap: 0.25rem;
+  }
+  
+  .navButton,
+  .actionButton {
+    padding: 0.375rem;
+  }
+  
+  .logoIcon svg {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .navButton svg,
+  .actionButton svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Small mobile phones (360px and down) */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0.375rem 0.5rem;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 2%, rgba(29, 78, 216, 0.95) 50%, rgba(15, 23, 42, 0.95) 98%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  
+  .navIcons {
+    gap: 0.5rem;
+  }
+  
+  .actionIcons {
+    gap: 0.125rem;
+  }
+  
+  .navButton,
+  .actionButton {
+    padding: 0.25rem;
+  }
+  
+  .logoIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .navButton svg,
+  .actionButton svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Extra small devices (320px and down) */
+@media (max-width: 320px) {
+  .navbar {
+    padding: 0.25rem 0.375rem;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 1%, rgba(29, 78, 216, 0.95) 50%, rgba(15, 23, 42, 0.95) 99%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  
+  .navIcons {
+    gap: 0.375rem;
+  }
+  
+  .actionIcons {
+    gap: 0.125rem;
+  }
+  
+  .navButton,
+  .actionButton {
+    padding: 0.1875rem;
+  }
+  
+  .logoIcon svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .navButton svg,
+  .actionButton svg {
+    width: 14px;
+    height: 14px;
+  }
+}
