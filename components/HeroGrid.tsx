@@ -1,7 +1,105 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './HeroGrid.module.css';
 
 const HeroGrid = () => {
+  const tradingViewRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Add a small delay to ensure DOM is ready and avoid conflicts
+    const timer = setTimeout(() => {
+      // Clear any existing content
+      if (tradingViewRef.current) {
+        tradingViewRef.current.innerHTML = '';
+      }
+
+      // Create and load TradingView script
+      const script = document.createElement('script');
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+      script.type = 'text/javascript';
+      script.async = true;
+      script.onload = () => setIsLoaded(true);
+      script.innerHTML = JSON.stringify({
+        width: "100%",
+        height: "100%",
+        symbol: "NASDAQ:AAPL",
+        interval: "D",
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        enable_publishing: false,
+        allow_symbol_change: true,
+        details: true,
+        hotlist: true,
+        calendar: false,
+        hide_top_toolbar: false,
+        hide_legend: false,
+        hide_side_toolbar: false,
+        save_image: true,
+        container_id: `tradingview_widget_${Date.now()}`,
+        studies: [],
+        show_popup_button: true,
+        popup_width: "1000",
+        popup_height: "650",
+        toolbar_bg: "rgba(15, 23, 42, 0.9)",
+        enabled_features: [
+          "study_templates",
+          "use_localstorage_for_settings",
+          "save_chart_properties_to_local_storage",
+          "create_volume_indicator_by_default",
+          "header_symbol_search",
+          "symbol_search_hot_key",
+          "header_resolutions",
+          "header_chart_type",
+          "header_settings",
+          "header_indicators",
+          "header_compare",
+          "header_undo_redo",
+          "header_screenshot",
+          "header_fullscreen_button",
+          "left_toolbar",
+          "control_bar",
+          "timeframes_toolbar",
+          "edit_buttons_in_legend",
+          "context_menus",
+          "border_around_the_chart"
+        ],
+        disabled_features: [],
+        overrides: {
+          "backgroundType": "gradient",
+          "backgroundGradientStartColor": "rgba(15, 23, 42, 0.8)",
+          "backgroundGradientEndColor": "rgba(30, 58, 138, 0.3)",
+          "gridColor": "rgba(59, 130, 246, 0.2)",
+          "scalesProperties.textColor": "#cbd5e1",
+          "paneProperties.background": "rgba(15, 23, 42, 0.8)",
+          "paneProperties.backgroundType": "gradient",
+          "mainSeriesProperties.candleStyle.upColor": "#10b981",
+          "mainSeriesProperties.candleStyle.downColor": "#ef4444",
+          "mainSeriesProperties.candleStyle.borderUpColor": "#10b981",
+          "mainSeriesProperties.candleStyle.borderDownColor": "#ef4444",
+          "mainSeriesProperties.candleStyle.wickUpColor": "#10b981",
+          "mainSeriesProperties.candleStyle.wickDownColor": "#ef4444"
+        }
+      });
+
+      if (tradingViewRef.current) {
+        tradingViewRef.current.appendChild(script);
+      }
+    }, 200);
+
+    // Cleanup function
+    return () => {
+      clearTimeout(timer);
+      if (tradingViewRef.current) {
+        tradingViewRef.current.innerHTML = '';
+      }
+      setIsLoaded(false);
+    };
+  }, []);
+
   return (
     <section className={styles.heroGrid}>
       <div className={styles.parent}>
@@ -28,32 +126,33 @@ const HeroGrid = () => {
           </div>
         </div>
 
-        {/* Center Main Section */}
+        {/* Center Main Section - Stable TradingView Widget */}
         <div className={`${styles.div3} ${styles.gridSection} ${styles.mainSection}`}>
-          <div className={styles.mainContent}>
-            <h1 className={styles.mainTitle}>
-              Revolutionary
-              <span className={styles.titleHighlight}> Digital Experience</span>
-            </h1>
-            <p className={styles.mainSubtitle}>
-              Discover the next generation of digital solutions that transform how you work, 
-              create, and connect with the world around you.
-            </p>
-            <div className={styles.mainButtons}>
-              <button className={styles.ctaButton}>
-                Start Your Journey
-                <svg className={styles.arrowIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M4.16667 10H15.8333M15.8333 10L10.8333 5M15.8333 10L10.8333 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-              <button className={styles.secondaryBtn}>
-                Learn More
-              </button>
-            </div>
-            <div className={styles.visualElement}>
-              <div className={styles.floatingShape1}></div>
-              <div className={styles.floatingShape2}></div>
-              <div className={styles.floatingShape3}></div>
+          <div className={styles.tradingViewContainer}>
+            {!isLoaded && (
+              <div className={styles.loadingPlaceholder}>
+                <div className={styles.loadingSpinner}></div>
+                <span>Loading TradingView Chart...</span>
+              </div>
+            )}
+            <div 
+              ref={tradingViewRef}
+              className="tradingview-widget-container"
+              style={{
+                height: '100%',
+                width: '100%',
+                position: 'relative',
+                opacity: isLoaded ? 1 : 0,
+                transition: 'opacity 0.3s ease'
+              }}
+            >
+              <div 
+                className="tradingview-widget-container__widget"
+                style={{
+                  height: '100%',
+                  width: '100%'
+                }}
+              ></div>
             </div>
           </div>
         </div>

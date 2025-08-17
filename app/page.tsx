@@ -4,8 +4,9 @@ import HeroGrid from '../components/HeroGrid';
 export default function Home() {
   return (
     <div>
-      <Hero />
+      
       <HeroGrid />
+      <Hero />
     </div>
   );
 }
